@@ -13,8 +13,8 @@ JRE 1.8, maven and an otp authenticator
 
 ```
 $ git clone https://github.com/karakays/oauth-2-fa.git
-$ mvn clean package
-$ java -jar target/jar
+$ cd oauth-2-fa/ && mvn clean package
+$ java -jar target/app-0.0.1-SNAPSHOT.jar
 ```
 
 ## Getting started
