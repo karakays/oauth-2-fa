@@ -27,12 +27,12 @@ $ java -jar target/app-0.0.1-SNAPSHOT.jar
 
     Public endpoints don't require authentication.
 
-    `/check-health`
+    * `/check-health`
 
     Secure endpoints cannot be accessed without being authenticated.
 
-    `/app/random`
-	`/app/time`
+    * `/app/random`
+	* `/app/time`
 
 
 ## Usage
