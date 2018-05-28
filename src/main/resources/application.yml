@@ -1,0 +1,31 @@
+server:
+  port: ${API_PORT:8000}
+
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:bootexample;MODE=PostgreSQL;DATABASE_TO_UPPER=false
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        enable_lazy_load_no_trans: true
+    show-sql: true
+    database: postgresql
+    
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+  signing-key: MaYzkSjmkzPC57L
+  encoding-strength: 256
+  security-realm: oauth2/client
+  jwt:
+    client-id: app
+    client-secret: app
+    grant-type: client_credentials
+    scope-read: this-is-read-scope
+    scope-write: this-is-write-scope
+    resource-ids: this-is-a-resource-id
