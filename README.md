@@ -1,9 +1,9 @@
 
-# Two-factor authentication with [OAuth 2.0](https://tools.ietf.org/html/rfc6749)
+# Two-factor authentication with OAuth 2.0
 
 ## About
 
-A demonstration of how one-time passwords can be used with OAuth 2. 
+A demonstration of how one-time passwords can be used with OAuth 2 password grant type. 
 
 ## Requirements
 
