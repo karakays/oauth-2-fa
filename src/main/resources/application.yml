@@ -23,9 +23,4 @@ security:
   encoding-strength: 256
   security-realm: oauth2/client
   jwt:
-    client-id: app
-    client-secret: app
-    grant-type: client_credentials
-    scope-read: this-is-read-scope
-    scope-write: this-is-write-scope
-    resource-ids: this-is-a-resource-id
+    resource-ids: web-resource

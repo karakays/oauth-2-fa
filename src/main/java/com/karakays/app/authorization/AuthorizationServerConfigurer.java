@@ -2,8 +2,8 @@ package com.karakays.app.authorization;
 
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,34 +21,22 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
+    private final TokenStore tokenStore;
     
-    @Value("${security.jwt.client-id}")
-    private String clientId;
+    private final JwtAccessTokenConverter accessTokenConverter;
+    
+    private final AuthenticationManager authenticationManager;
+    
+    private final DataSource dataSource;
+    
+	public AuthorizationServerConfigurer(TokenStore tokenStore, JwtAccessTokenConverter accessTokenConverter,
+			AuthenticationManager authenticationManager, DataSource dataSource) {
+		this.tokenStore = tokenStore;
+		this.accessTokenConverter = accessTokenConverter;
+		this.authenticationManager = authenticationManager;
+		this.dataSource = dataSource;
+	}
 
-    @Value("${security.jwt.client-secret}")
-    private String clientSecret;
-    
-    @Value("${security.jwt.grant-type}")
-    private String grantType;
-    
-    @Value("${security.jwt.scope-read}")
-    private String scopeRead;
-    
-    @Value("${security.jwt.scope-write}")
-    private String scopeWrite;
-    
-    @Value("${security.jwt.resource-ids}")
-    private String resourceIds;
-    
-    @Autowired
-    private TokenStore tokenStore;
-    
-    @Autowired
-    private JwtAccessTokenConverter accessTokenConverter;
-    
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -59,11 +47,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient(clientId) // start building a client
-            .secret(clientSecret)
-            .authorizedGrantTypes("password", "authorization_code", "refresh_token", "client_credentials")
-            .scopes(scopeRead, scopeWrite, "custom-sceop-1")
-            .resourceIds(resourceIds);
+    	clients.jdbc(dataSource);
     }
     
     @Override

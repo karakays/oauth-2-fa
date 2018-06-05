@@ -1,3 +1,21 @@
+CREATE TABLE OAUTH_CLIENT_DETAILS ( CLIENT_ID VARCHAR(255) PRIMARY KEY, RESOURCE_IDS VARCHAR(255), CLIENT_SECRET VARCHAR(255),
+  SCOPE VARCHAR(255), AUTHORIZED_GRANT_TYPES VARCHAR(255), WEB_SERVER_REDIRECT_URI VARCHAR(255), AUTHORITIES VARCHAR(255),
+  ACCESS_TOKEN_VALIDITY INTEGER, REFRESH_TOKEN_VALIDITY INTEGER, ADDITIONAL_INFORMATION VARCHAR(4096), AUTOAPPROVE VARCHAR(255));
+  
+INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, AUTHORITIES,
+	ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
+	VALUES ('webapp', 'web-resource', 'webapp', 'read,write', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+ 
+INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, AUTHORITIES,
+	ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
+	VALUES ('xapp', 'web-resourcej', 'xapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+	
+INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, AUTHORITIES,
+	ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
+	VALUES ('yapp', 'y-resource', 'yapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+ 
 -- non-encrypted password: jwtpass
-INSERT INTO user_credentials (id, password, username, secret, is_2fa_enabled) VALUES (1, '$2a$04$TE28W7luRRBoDyp5oSD.hepd3fX6VKRcYtT97gcI2Jpxm8SC8kSCm', 'johnd', NULL, false);
-INSERT INTO user_credentials (id, password, username, secret, is_2fa_enabled) VALUES (2, '$2a$04$TE28W7luRRBoDyp5oSD.hepd3fX6VKRcYtT97gcI2Jpxm8SC8kSCm', 'admin', 'JBSWY3DPEHPK3PXP', true);
+INSERT INTO user_credentials (id, password, username, secret, is_2fa_enabled)
+	VALUES (1, '$2a$04$TE28W7luRRBoDyp5oSD.hepd3fX6VKRcYtT97gcI2Jpxm8SC8kSCm', 'johnd', NULL, false);
+INSERT INTO user_credentials (id, password, username, secret, is_2fa_enabled) 
+	VALUES (2, '$2a$04$TE28W7luRRBoDyp5oSD.hepd3fX6VKRcYtT97gcI2Jpxm8SC8kSCm', 'admin', 'JBSWY3DPEHPK3PXP', true);
