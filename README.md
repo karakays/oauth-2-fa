@@ -49,13 +49,16 @@ Unauthenticated requests on secure endpoints result with 401 error as shown belo
 $ curl http:localhost:8000/app/random
 
 < HTTP/1.1 401
-{"error":"unauthorized","error_description":"Full authentication is required to access this resource"}
+{
+  "error": "unauthorized",
+  "error_description": "Full authentication is required to access this resource"
+}
 ```
 
 To authenticate, password credentials need to be provided. 
 
 ```
-$ curl -u app:app -X POST -d "username=johnd&password=jwtpass"   
+$ curl -u app:app -X POST -d "username=johnd&password=jwtpass"\   
 http://localhost:8000/tokens?grant_type=password
 
 {
@@ -71,7 +74,7 @@ http://localhost:8000/tokens?grant_type=password
 If a user has two-factor authentication enabled, it needs to provide OTP token as well - observe
 
 ```
-$ curl -u app:app -X POST -d "username=admin&password=jwtpass"  
+$ curl -u app:app -X POST -d "username=admin&password=jwtpass"\  
 http://localhost:8000/tokens?grant_type=password
 
 < HTTP/1.1 400
@@ -82,7 +85,7 @@ http://localhost:8000/tokens?grant_type=password
 ```
 
 ```
-$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=123456"  
+$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=123456"\  
 http://localhost:8000/tokens?grant_type=password
 
 < HTTP/1.1 400
@@ -93,7 +96,7 @@ http://localhost:8000/tokens?grant_type=password
 ```
 
 ```
-$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=007629"  
+$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=007629"\  
 http://localhost:8000/tokens?grant_type=password
 
 {
