@@ -55,31 +55,55 @@ $ curl http:localhost:8000/app/random
 To authenticate, password credentials need to be provided. 
 
 ```
-$ curl -u app:app -X POST -d "username=johnd&password=jwtpass" http://localhost:8000/tokens?grant_type=password
+$ curl -u app:app -X POST -d "username=johnd&password=jwtpass"   
+http://localhost:8000/tokens?grant_type=password
 
-{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGhpcy1pcy1hLXJlc291cmNlLWlkIl0sImV4cCI6MTUyNzQ3OTI5NSwidXNlcl9uYW1lIjoiam9obmQiLCJqdGkiOiJjNzI1OGNmYS1kMTNiLTRkZmMtOTYzMS04NDBlMjE0ZThmOWQiLCJjbGllbnRfaWQiOiJhcHAiLCJzY29wZSI6WyJ0aGlzLWlzLXJlYWQtc2NvcGUiLCJ0aGlzLWlzLXdyaXRlLXNjb3BlIiwiY3VzdG9tLXNjZW9wLTEiXX0.i4itJzHwGONkksqXfIN73F9d-a_9opGAvywPQJWG_iY","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGhpcy1pcy1hLXJlc291cmNlLWlkIl0sInVzZXJfbmFtZSI6ImpvaG5kIiwic2NvcGUiOlsidGhpcy1pcy1yZWFkLXNjb3BlIiwidGhpcy1pcy13cml0ZS1zY29wZSIsImN1c3RvbS1zY2VvcC0xIl0sImF0aSI6ImM3MjU4Y2ZhLWQxM2ItNGRmYy05NjMxLTg0MGUyMTRlOGY5ZCIsImV4cCI6MTUzMDAyODA5NSwianRpIjoiZDA0N2JjYjItZjFkZi00Yzc2LTljZDktMzY4MjQ1MTc3MDVhIiwiY2xpZW50X2lkIjoiYXBwIn0.5Edn_jZTSjHxNgC_1W5DX5cy0TSSpodEsO6skoGTZyQ","expires_in":43199,"scope":"this-is-read-scope this-is-write-scope custom-sceop-1","jti":"c7258cfa-d13b-4dfc-9631-840e214e8f9d"}
+{
+  "access_token":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieS1yZXNvdXJjZSJdLCJleHAiOjE1MjgzMTIxMTEsInVzZXJfbmFtZSI6ImpvaG5kIiwianRpIjoiMTdhYTMxZjktNTMxYS00NjJiLWE2NTctY2YwZWFlMzNjYzZmIiwiY2xpZW50X2lkIjoieWFwcCIsInNjb3BlIjpbInJlYWQiXX0.Y-onGiYPMYnhhnn2NmXLnu4aC7swoDxeUv6OZLr8M6I",
+  "token_type": "bearer",  
+  "refresh_token":   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieS1yZXNvdXJjZSJdLCJ1c2VyX25hbWUiOiJqb2huZCIsInNjb3BlIjpbInJlYWQiXSwiYXRpIjoiMTdhYTMxZjktNTMxYS00NjJiLWE2NTctY2YwZWFlMzNjYzZmIiwiZXhwIjoxNTMwODkzMzExLCJqdGkiOiJjMzM2ZDU0ZS03YjQxLTQzOGItODE1Zi1kNjIyYmZlZjI1NTAiLCJjbGllbnRfaWQiOiJ5YXBwIn0.lx0S6AYqbaEdkUf7oaG6hQ1cRDAa6YBig-wD71djUC8",   
+  "expires_in": 10799,   
+  "scope": "read",   
+  "jti": "17aa31f9-531a-462b-a657-cf0eae33cc6f"
+}
 ```
 
 If a user has two-factor authentication enabled, it needs to provide OTP token as well - observe
 
 ```
-$ curl -u app:app -X POST -d "username=admin&password=jwtpass" http://localhost:8000/tokens?grant_type=password
+$ curl -u app:app -X POST -d "username=admin&password=jwtpass"  
+http://localhost:8000/tokens?grant_type=password
 
 < HTTP/1.1 400
-{"error":"invalid_grant","error_description":"OTP code is mandatory"}
+{
+  "error": "invalid_grant",
+  "error_description": "OTP code is mandatory"
+}
 ```
 
 ```
-$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=123456" http://localhost:8000/tokens?grant_type=password
+$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=123456"  
+http://localhost:8000/tokens?grant_type=password
 
 < HTTP/1.1 400
-{"error":"invalid_grant","error_description":"Invalid OTP code"}
+{
+  "error": "invalid_grant",
+  "error_description": "Invalid OTP code"
+}
 ```
 
 ```
-$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=007629" http://localhost:8000/tokens?grant_type=password
+$ curl -u app:app -X POST -d "username=admin&password=jwtpass&otp=007629"  
+http://localhost:8000/tokens?grant_type=password
 
-{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGhpcy1pcy1hLXJlc291cmNlLWlkIl0sImV4cCI6MTUyNzQ3OTI5NSwidXNlcl9uYW1lIjoiam9obmQiLCJqdGkiOiJjNzI1OGNmYS1kMTNiLTRkZmMtOTYzMS04NDBlMjE0ZThmOWQiLCJjbGllbnRfaWQiOiJhcHAiLCJzY29wZSI6WyJ0aGlzLWlzLXJlYWQtc2NvcGUiLCJ0aGlzLWlzLXdyaXRlLXNjb3BlIiwiY3VzdG9tLXNjZW9wLTEiXX0.i4itJzHwGONkksqXfIN73F9d-a_9opGAvywPQJWG_iY","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGhpcy1pcy1hLXJlc291cmNlLWlkIl0sInVzZXJfbmFtZSI6ImpvaG5kIiwic2NvcGUiOlsidGhpcy1pcy1yZWFkLXNjb3BlIiwidGhpcy1pcy13cml0ZS1zY29wZSIsImN1c3RvbS1zY2VvcC0xIl0sImF0aSI6ImM3MjU4Y2ZhLWQxM2ItNGRmYy05NjMxLTg0MGUyMTRlOGY5ZCIsImV4cCI6MTUzMDAyODA5NSwianRpIjoiZDA0N2JjYjItZjFkZi00Yzc2LTljZDktMzY4MjQ1MTc3MDVhIiwiY2xpZW50X2lkIjoiYXBwIn0.5Edn_jZTSjHxNgC_1W5DX5cy0TSSpodEsO6skoGTZyQ","expires_in":43199,"scope":"this-is-read-scope this-is-write-scope custom-sceop-1","jti":"c7258cfa-d13b-4dfc-9631-840e214e8f9d"}
+{
+  "access_token":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieS1yZXNvdXJjZSJdLCJleHAiOjE1MjgzMTIxMTEsInVzZXJfbmFtZSI6ImpvaG5kIiwianRpIjoiMTdhYTMxZjktNTMxYS00NjJiLWE2NTctY2YwZWFlMzNjYzZmIiwiY2xpZW50X2lkIjoieWFwcCIsInNjb3BlIjpbInJlYWQiXX0.Y-onGiYPMYnhhnn2NmXLnu4aC7swoDxeUv6OZLr8M6I",
+  "token_type": "bearer",  
+  "refresh_token":   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieS1yZXNvdXJjZSJdLCJ1c2VyX25hbWUiOiJqb2huZCIsInNjb3BlIjpbInJlYWQiXSwiYXRpIjoiMTdhYTMxZjktNTMxYS00NjJiLWE2NTctY2YwZWFlMzNjYzZmIiwiZXhwIjoxNTMwODkzMzExLCJqdGkiOiJjMzM2ZDU0ZS03YjQxLTQzOGItODE1Zi1kNjIyYmZlZjI1NTAiLCJjbGllbnRfaWQiOiJ5YXBwIn0.lx0S6AYqbaEdkUf7oaG6hQ1cRDAa6YBig-wD71djUC8",   
+  "expires_in": 10799,   
+  "scope": "read",   
+  "jti": "17aa31f9-531a-462b-a657-cf0eae33cc6f"
+}
 ```
 
 ## License
