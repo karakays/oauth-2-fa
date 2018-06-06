@@ -1,6 +1,10 @@
 usage of client scope
 usage of user authentication
 
+token=$(curl -u webapp:webapp -X POST -d "username=johnd&password=jwtpass" http://localhost:8000/tokens?grant_type=password | jq -r '.access_token')
+
+curl -H "Authorization: Bearer $token" http://localhost:8000/app/random
+
 DefaulTokenServices implements ResourceServerTokenServices and AuthorizationServerTokenServices, serves as main service class for tokenstore and tokenconverter.
     
 ResourceServerTokenServices ->
@@ -24,8 +28,7 @@ OAuth2AuthenticationProcessingFilter to convert JWT into Authentication
 
 Every client has its own resource, scope and grant types.
 
-Clients are assigned resources. Access tokens are generated based on these resources. A resource cannot be accessed
-with an access token generated for a different resource. Are resources audience?
+Clients are assigned to resources. Access tokens are generated based on these resources clients have. Every client can access only its own resources. Are resources audience?
 
 resource server configuration
 this endpoint can be access by clients having scopes
