@@ -42,7 +42,7 @@ public class ResourceServerConfigurator {
 	}
     
 	@Bean
-	protected ResourceServerConfiguration otherResources() {
+	protected ResourceServerConfiguration adminResources() {
 
 		ResourceServerConfiguration resource = new ResourceServerConfiguration() {
 			public void setConfigurers(List<ResourceServerConfigurer> configurers) {
@@ -54,7 +54,7 @@ public class ResourceServerConfigurator {
 
 			@Override
 			public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-				resources.resourceId("y-resource");
+				resources.resourceId("admin-resource");
 			}
 
 			@Override

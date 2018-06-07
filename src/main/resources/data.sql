@@ -8,11 +8,11 @@ INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, 
  
 INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, AUTHORITIES,
 	ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
-	VALUES ('xapp', 'web-resourcej', 'xapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+	VALUES ('xapp', 'web-resource', 'xapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
 	
 INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, AUTHORITIES,
 	ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
-	VALUES ('yapp', 'y-resource', 'yapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+	VALUES ('yapp', 'admin-resource', 'yapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
  
 -- non-encrypted password: jwtpass
 INSERT INTO user_credentials (id, password, username, secret, is_2fa_enabled)
