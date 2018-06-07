@@ -1,6 +1,5 @@
 package com.karakays.app.conf;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,21 +21,21 @@ import com.karakays.app.authorization.TotpWebAuthenticationDetailsSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private final String signingKey;
     
-    @Value("${security.signing-key}")
-    private String signingKey;
+    private final String realm;
     
-    @Value("${security.security-realm}")
-    private String realm;
-
-    @Value("${security.encoding-strength}")
-    private Integer encodingStrength;
+    private final UserDetailsService userDetailsService;
     
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final AuthenticationProvider totpAuthenticationProvider;
     
-    @Autowired
-    private AuthenticationProvider totpAuthenticationProvider;
+    public SecurityConfig(@Value("${security.signing-key}") String key, @Value("${security.security-realm}") String realm,
+    		UserDetailsService userDetails, AuthenticationProvider provider) {
+    	this.signingKey = key;
+    	this.realm = realm;
+    	this.userDetailsService = userDetails;
+    	this.totpAuthenticationProvider = provider;
+	}
 
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
@@ -52,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and().httpBasic().realmName("MY_REALM")
+            .and().httpBasic().realmName(this.realm)
             .and().formLogin().authenticationDetailsSource(new TotpWebAuthenticationDetailsSource())
             .and().csrf().disable();
     }
