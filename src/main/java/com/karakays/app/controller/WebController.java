@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/app")
-public class ResourceController {
+public class WebController {
     
     @GetMapping("/random")
     public Integer randomNumber() {
