@@ -1,5 +1,9 @@
+Two-factor authentication with OAuth 2.0
+========================
 
-# Two-factor authentication with OAuth 2.0
+[![Build Status](https://travis-ci.org/karakays/oauth-2-fa.svg?branch=master)](https://travis-ci.org/karakays/oauth-2-fa?branch=master) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## About
 
@@ -13,7 +17,7 @@ JRE 1.8, maven and an otp authenticator
 
 ```
 $ git clone https://github.com/karakays/oauth-2-fa.git
-$ cd oauth-2-fa/ && mvn clean package
+$ cd oauth-2-fa/ && mvn package
 $ java -jar target/app-0.0.1-SNAPSHOT.jar
 ```
 
