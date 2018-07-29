@@ -91,7 +91,68 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>1.9.4</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<!-- During release:perform, enable the "release" profile -->
+					<releaseProfiles>release</releaseProfiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>2.11</version>
+				<configuration>
+					<header>LICENSE</header>
+					<properties>
+						<owner>Selçuk Karakayalı</owner>
+						<email>skarakayali@gmail.com</email>
+	                    <inceptionYear>2018</inceptionYear>
+					</properties>
+					<excludes>
+						<exclude>**/README</exclude>
+                        <exclude>pom.xml</exclude>
+						<exclude>src/test/resources/**</exclude>
+						<exclude>src/main/resources/**</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>format</id>
+						<goals>
+							<goal>format</goal>
+						</goals>
+						<phase>verify</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
+	<developers>
+		<developer>
+			<id>karakays</id>
+			<name>Selçuk Karakayalı</name>
+			<email>skarakayali@gmail.com</email>
+			<url>karakays.com</url>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>The MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 </project>
