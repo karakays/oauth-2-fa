@@ -7,7 +7,7 @@ Two-factor authentication with OAuth 2.0
 
 ## About
 
-A demonstration of how one-time passwords can be used with OAuth 2 password grant type. 
+A demonstration of how one-time passwords can be used with OAuth 2.0 password grant type. 
 
 ## Requirements
 
