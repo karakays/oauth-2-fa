@@ -8,14 +8,14 @@ INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, 
  
 INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, AUTHORITIES,
 	ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
-	VALUES ('xapp', 'web-resource', 'xapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+	VALUES ('iosapp', 'web-resource', 'iosapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
 	
 INSERT INTO OAUTH_CLIENT_DETAILS(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, AUTHORITIES,
 	ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
-	VALUES ('yapp', 'admin-resource', 'yapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+	VALUES ('andapp', 'admin-resource', 'andapp', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
  
--- non-encrypted password: jwtpass
 INSERT INTO user_credentials (id, password, username, secret, is_2fa_enabled)
-	VALUES (1, '$2a$04$TE28W7luRRBoDyp5oSD.hepd3fX6VKRcYtT97gcI2Jpxm8SC8kSCm', 'johnd', NULL, false);
+	VALUES (1, '$2a$10$nLrCuyqhrIK3x2M7EYIn7u7LEaXbAJTvPuY4QQeBBvdnuPn4j9kqe', 'alice', NULL, false);
+
 INSERT INTO user_credentials (id, password, username, secret, is_2fa_enabled) 
-	VALUES (2, '$2a$04$TE28W7luRRBoDyp5oSD.hepd3fX6VKRcYtT97gcI2Jpxm8SC8kSCm', 'admin', 'JBSWY3DPEHPK3PXP', true);
+	VALUES (2, '$2a$10$nLrCuyqhrIK3x2M7EYIn7u7LEaXbAJTvPuY4QQeBBvdnuPn4j9kqe', 'bob', 'JBSWY3DPEHPK3PXP', true);
