@@ -58,19 +58,16 @@ public class TotpAuthenticationProvider extends DaoAuthenticationProvider {
 			String secret = ((UserCredentials) userDetails).getSecret();
 			String totpKeyString = (String) ((LinkedHashMap<?, ?>) authentication.getDetails()).get("otp");
 			Integer totpKey = null;
-
-			try {
-				totpKey = Integer.valueOf(totpKeyString);
-			} catch (NumberFormatException e) {
-				totpKey = null;
-			}
-
-			if (totpKey != null) {
-				try {
-					if (!totpAuthenticator.verifyCode(secret, totpKey, 2)) {
+			
+			if(totpKeyString != null) {
+                try {
+                    totpKey = Integer.valueOf(totpKeyString);
+					if (!totpAuthenticator.verifyCode(secret, totpKey, 0)) {
 						throw new BadCredentialsException("Invalid OTP code");
 					}
-				} catch (InvalidKeyException | NoSuchAlgorithmException e) {
+                } catch (NumberFormatException e) {
+					throw new BadCredentialsException("Invalid OTP code");
+                } catch (InvalidKeyException | NoSuchAlgorithmException e) {
 					throw new InternalAuthenticationServiceException("OTP code verification failed", e);
 				}
 			} else {
