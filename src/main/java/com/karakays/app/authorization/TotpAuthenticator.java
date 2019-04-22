@@ -34,8 +34,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class TotpAuthenticator {
 
-	public boolean verifyCode(String secret, int code, int variance) throws InvalidKeyException,
-		NoSuchAlgorithmException {
+	public boolean verifyCode(String secret, int code, int variance)
+			throws InvalidKeyException, NoSuchAlgorithmException {
 		long timeIndex = System.currentTimeMillis() / 1000 / 30;
 		byte[] secretBytes = new Base32().decode(secret);
 		for (int i = -variance; i <= variance; i++) {
